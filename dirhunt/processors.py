@@ -99,7 +99,7 @@ class ProcessBase(object):
 
     def search_keywords(self, text):
         if sys.version_info > (3,) and isinstance(text, bytes):
-            text = text.decode('utf-8')
+            text = text.decode('utf-8', errors='ignore')
         for keyword in self.crawler_url.crawler.interesting_keywords:
             if keyword in text:
                 self.keywords_found.add(keyword)
@@ -252,7 +252,7 @@ class ProcessCssStyleSheet(ProcessBase):
 
     def process(self, text, soup=None):
         if sys.version_info > (3,) and isinstance(text, bytes):
-            text = text.decode('utf-8')
+            text = text.decode('utf-8', errors='ignore')
         self.search_keywords(text)
         urls = [full_url_address(url, self.crawler_url.url) for url in re.findall(': *url\(["\']?(.+?)["\']?\)', text)]
         for url in urls:
@@ -270,7 +270,7 @@ class ProcessJavaScript(ProcessBase):
 
     def process(self, text, soup=None):
         if sys.version_info > (3,) and isinstance(text, bytes):
-            text = text.decode('utf-8')
+            text = text.decode('utf-8', errors='ignore')
         self.search_keywords(text)
         urls = [full_url_address(url[0], self.crawler_url.url)
                 for url in re.findall(TEXT_PLAIN_PATH_STRING_REGEX, text, re.VERBOSE)]

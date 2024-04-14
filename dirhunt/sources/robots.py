@@ -16,7 +16,7 @@ class DirhuntRobotFileParser(RobotFileParser):
     def read(self):
         """Reads the robots.txt URL and feeds it to the parser."""
         try:
-            with requests.get(self.url) as response:
+            with requests.get(self.url, timeout=10) as response:
                 status_code = response.status_code
                 text = response.text
         except RequestException:

@@ -119,6 +119,9 @@ class ProcessBase(object):
         return self.crawler_url.maybe_directory()
 
     def url_line(self):
+        linea = '{}: '.format(self.status_code)
+        linea += '{}'.format(self.crawler_url.url.url)
+        print(f"\n{linea}")
         body = colored('[{}]'.format(self.status_code), status_code_colors(self.status_code))
         body += ' {} '.format(self.crawler_url.url.url)
         body += colored(' ({})'.format(self.name or self.__class__.__name__), Fore.LIGHTYELLOW_EX)
@@ -131,6 +134,7 @@ class ProcessBase(object):
                                                            timeout=self.crawler_url.timeout, **kwargs))
 
     def __str__(self):
+        #print(f"{self.crawler_url.url.url}")
         body = self.url_line()
         if self.index_file:
             body += colored('\n    Index file found: ', Fore.BLUE)
@@ -162,11 +166,11 @@ class Error(ProcessBase):
         pass
 
     def __str__(self):
-        body = colored('[ERRORxx]', Back.LIGHTRED_EX, Fore.LIGHTWHITE_EX)
+        print(f"ERR: {self.crawler_url.url.url}")
+        body = colored('[ERROR]', Back.LIGHTRED_EX, Fore.LIGHTWHITE_EX)
         body += ' {} '.format(self.crawler_url.url.url)
         body += colored('({})'.format(self.error), Fore.LIGHTYELLOW_EX)
-        print(f"{self.crawler_url.url.url}")
-        return self.crawler_url.url.url
+        return body
 
     @classmethod
     def is_applicable(cls, request, text, crawler_url, soup):

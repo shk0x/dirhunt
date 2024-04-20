@@ -91,8 +91,7 @@ def print_version(ctx, param, value):
 
 def welcome():
     from dirhunt import __version__
-    click.secho('Welcome to Dirhunt v{} using Python {}'.format(__version__, sys.version.split()[0]),
-                fg='cyan')
+
 
 
 def flags_range(flags):

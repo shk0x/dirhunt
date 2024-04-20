@@ -1,3 +1,15 @@
+$ dirhunt https://victim.victim.victim/ --exclude-sources certificatessl --threads 40 >test
+$ cat test
+200: https://victim.victim.victim/.well-known/assetlinks.json
+200: https://victim.victim.victim/.well-known/gpc.json
+404: https://victim.victim.victim/.well-known/nodeinfo
+ERR: https://victim.victim.victim/static/front/fonts/bodonimoda-600-italic.862fa920.ttf
+ERR: https://victim.victim.victim/static/front/fonts/bodonimoda-500-normal.c152933f.ttf
+500: https://victim.victim.victim/static/front/fonts/bodonimoda-800-italic.c4f1cf28.ttf
+200: https://victim.victim.victim/static/front/fonts/bodonimoda-700-italic.85b9582e.ttf
+200: https://victim.victim.victim/static/front/fonts/bodonimoda-900-italic.76fe8150.ttf
+ERR: https://victim.victim.victim/static/front/fonts/bodonimoda-900-normal.d46f53e1.ttf
+ERR: https://victim.victim.victim/static/front/fonts/cutivemono-400-normal.49663c3e.ttf
 
 .. image:: https://raw.githubusercontent.com/Nekmo/dirhunt/v0.2.0/images/dirhunt.png
 

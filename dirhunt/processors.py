@@ -162,10 +162,11 @@ class Error(ProcessBase):
         pass
 
     def __str__(self):
-        body = colored('[ERROR]', Back.LIGHTRED_EX, Fore.LIGHTWHITE_EX)
+        body = colored('[ERRORxx]', Back.LIGHTRED_EX, Fore.LIGHTWHITE_EX)
         body += ' {} '.format(self.crawler_url.url.url)
         body += colored('({})'.format(self.error), Fore.LIGHTYELLOW_EX)
-        return body
+        print(f"{self.crawler_url.url.url}")
+        return self.crawler_url.url.url
 
     @classmethod
     def is_applicable(cls, request, text, crawler_url, soup):
